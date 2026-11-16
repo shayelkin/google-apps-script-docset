@@ -128,3 +128,42 @@ def test_known_entries(rows: list[tuple[str, str, str]]) -> None:
         ("CalendarApp.Color", "Property"),
     ]:
         assert expected in names, f"{expected} should be indexed"
+
+
+CACHE = Path(__file__).parent / "cache"
+CC_BY_4 = "https://creativecommons.org/licenses/by/4.0/"
+APACHE_2 = "https://www.apache.org/licenses/LICENSE-2.0"
+
+
+def test_source_pages_license_unchanged() -> None:
+    files = list(CACHE.glob("*.html"))
+    assert files, "cache must contain fetched source pages; run fetch.py first"
+    content = re.compile(
+        r"content of this page is licensed under the\s+<a href=\""
+        + re.escape(CC_BY_4)
+        + r"\">Creative Commons Attribution 4\.0 License</a>"
+    )
+    code = re.compile(
+        r"code samples are licensed under the\s+<a href=\""
+        + re.escape(APACHE_2)
+        + r"\">Apache 2\.0 License</a>"
+    )
+    bad: list[str] = []
+    for f in files:
+        text = f.read_text()
+        if not content.search(text):
+            bad.append(f"{f.name}: content not CC BY 4.0")
+        if not code.search(text):
+            bad.append(f"{f.name}: code samples not Apache 2.0")
+    assert not bad, (
+        f"source licensing differs from expected (CC BY 4.0 + Apache 2.0): {bad[:5]}"
+    )
+
+
+def test_docset_pages_carry_attribution(pages: dict[Path, BeautifulSoup]) -> None:
+    for page, soup in pages.items():
+        footer = soup.find("footer")
+        assert footer is not None, f"{page.name} must have a license footer"
+        assert "CC BY 4.0" in footer.get_text() and "Apache 2.0" in footer.get_text(), (
+            f"{page.name} footer must state both licenses"
+        )
