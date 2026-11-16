@@ -1,6 +1,9 @@
 # google-apps-script-docset
 
-Scripts to generate a [docset bundle](https://kapeli.com/docsets) from [Google Apps Scripts' reference documentation](https://developers.google.com/apps-script/reference).
+Scripts to generate a [docset bundle](https://kapeli.com/docsets) from [Google Apps Scripts'
+reference documentation](https://developers.google.com/apps-script/reference). Such bundles can be
+used with document browsers such as [Zeal](https://zealdocs.org/) and
+[Dash](https://kapeli.com/dash).
 
 A generated docset can be downloaded from the [GitHub release page](https://github.com/shayelkin/google-apps-script-docset/releases/latest), or built using the
 instructions below.
