@@ -2,8 +2,7 @@
 
 Scripts to generate a [docset bundle](https://kapeli.com/docsets) from [Google Apps Scripts' reference documentation](https://developers.google.com/apps-script/reference).
 
-The latest compiled docset can be downloaded from the [GitHub release
-page](https://github.com/shayelkin/google-apps-script-docset/release/latest), or be built using the
+A generated docset can be downloaded from the [GitHub release page](https://github.com/shayelkin/google-apps-script-docset/releases/latest), or built using the
 instructions below.
 
 ## Generating a docset bundle
