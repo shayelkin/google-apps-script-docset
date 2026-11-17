@@ -235,9 +235,9 @@ def main() -> int:
     with (DOCSET / "Contents/Info.plist").open("wb") as fh:
         plistlib.dump(
             {
-                "CFBundleIdentifier": "appsscript",
+                "CFBundleIdentifier": "googleAppsScript",
                 "CFBundleName": "Google Apps Script",
-                "DocSetPlatformFamily": "appsscript",
+                "DocSetPlatformFamily": "usercontribGoogleAppsScript",
                 "isDashDocset": True,
                 "dashIndexFilePath": "index.html",
                 "DashDocSetFallbackURL": BASE + ROOT + "/",
